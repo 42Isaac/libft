@@ -6,30 +6,13 @@
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 07:27:36 by iperez            #+#    #+#             */
-/*   Updated: 2018/12/06 07:42:05 by iperez           ###   ########.fr       */
+/*   Updated: 2019/01/30 13:41:34 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putint(int i)
-{
-	if (i < 0)
-	{
-		ft_putchar('-');
-		i *= -1;
-	}
-	if (i > 9)
-		ft_putint(i / 10);
-	ft_putchar(i % 10 + '0');
-}
-
-int		ft_atoi(const char *str)
+int		ft_atoi(const char *s)
 {
 	int i;
 	int sign;
@@ -38,28 +21,19 @@ int		ft_atoi(const char *str)
 	i = 0;
 	sign = 1;
 	push = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\r'
-			|| str[i] == '\n' || str[i] == '\v' || str[i] == '\f')
+	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\r'
+			|| s[i] == '\n' || s[i] == '\v' || s[i] == '\f')
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (s[i] == '-' || s[i] == '+')
 	{
-		if (str[i] == '-')
+		if (s[i] == '-')
 			sign *= -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (s[i] >= '0' && s[i] <= '9')
 	{
-		push = push * 10 + str[i] - '0';
+		push = push * 10 + s[i] - '0';
 		i++;
 	}
 	return (push * sign);
-}
-
-int		main(int ac, char **av)
-{
-	if (ac != 2)
-		return (0);
-	ft_putint(ft_atoi(av[1]));
-	ft_putchar('\n');
-	return (0);
 }

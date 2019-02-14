@@ -6,22 +6,11 @@
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 12:20:36 by iperez            #+#    #+#             */
-/*   Updated: 2018/11/29 12:54:05 by iperez           ###   ########.fr       */
+/*   Updated: 2019/01/30 14:14:05 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-
-void	ft_putstr(char *c)
-{
-	int i;
-
-	i = 0;
-	while (c[i])
-		write(1, &c[i++], 1);
-	write(1, "\n", 1);
-}
+#include "libft.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -41,12 +30,4 @@ char	*ft_strdup(const char *s1)
 		i--;
 	}
 	return (r);
-}
-
-int		main(int ac, char **av)
-{
-	if (ac != 2)
-		return (0);
-	ft_putstr(ft_strdup(av[1]));
-	return (0);
 }

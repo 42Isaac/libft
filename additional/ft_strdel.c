@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_strdel(char **as)
 {
-	if (!as || !*as)
-		return (NULL);
-	free(*as);
+	if (as != NULL)
+	{
+		free(*as);
+		*as = NULL;
+	}
 }

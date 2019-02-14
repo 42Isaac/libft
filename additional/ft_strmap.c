@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 11:57:03 by iperez            #+#    #+#             */
-/*   Updated: 2019/01/30 14:16:54 by iperez           ###   ########.fr       */
+/*   Created: 2019/02/11 13:03:27 by iperez            #+#    #+#             */
+/*   Updated: 2019/02/11 13:03:31 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char    *ft_strmap(char const *s, char (*f)(char))
 {
-	size_t i;
+	char	*push;
+	int		i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (!s)
+		return (NULL);
+	push = ft_strnew(ft_strlen(s));
+	if (!push)
+		return (NULL);
+	i = -1;
+	while (*(s + ++i))
+		*(push + i) = f(*(s + i));
+	return (push);
 }

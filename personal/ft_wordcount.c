@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 11:57:03 by iperez            #+#    #+#             */
-/*   Updated: 2019/01/30 14:16:54 by iperez           ###   ########.fr       */
+/*   Created: 2019/02/13 16:13:55 by iperez            #+#    #+#             */
+/*   Updated: 2019/02/13 16:13:57 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t  ft_wordcount(char *s, char d)
 {
-	size_t i;
+    int     i;
+    size_t  count;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+    i = 0;
+    count = 0;
+    while (s[i])
+    {
+        while (s[i] == d)
+            i++;
+        if (s[i] && s[i] != d)
+        {
+            count++;
+            while (s[i] && s[i] != d)
+                i++;
+        }
+    }
+    return (count);
 }

@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 11:57:03 by iperez            #+#    #+#             */
-/*   Updated: 2019/01/30 14:16:54 by iperez           ###   ########.fr       */
+/*   Created: 2019/02/13 13:46:17 by iperez            #+#    #+#             */
+/*   Updated: 2019/02/13 13:46:25 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char    *ft_strjoin(char const *s1, char const *s2)
 {
-	size_t i;
+    char *push;
+    int s;
+    int p;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+    if(!(push = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+        return (NULL);
+    s = 0;
+    p = 0;
+    while (s1[s])
+        push[p++] = s1[s++];
+    s = 0;
+    while (s2[s])
+        push[p++] = s2[s++];
+    return (push);
 }

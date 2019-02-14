@@ -9,10 +9,14 @@
 /*   Updated: 2019/01/08 10:07:18 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-:
+
+#include "libft.h"
+
 void	ft_memdel(void **ap)
 {
-	if (!ap || !*ap)
-		return (NULL);
-	free(*ap);
+	if (ap != NULL)
+	{
+		free(*ap);
+		*ap = NULL;
+	}
 }

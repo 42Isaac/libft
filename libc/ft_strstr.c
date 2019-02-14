@@ -10,29 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *c)
-{
-	int i;
-
-	i = 0;
-	if (c == NULL)
-	{
-		write(1, "NULL\n", 5);
-		exit (0);
-	}
-	while (c[i])
-		ft_putchar(c[i++]);
-	ft_putchar('\n');
-}
+#include "libft.h"
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
@@ -57,15 +35,4 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		i++;
 	}
 	return (NULL);
-}
-
-int		main(int ac, char **av)
-{
-	char	*test;
-	
-	if (ac != 3)
-		return (0);
-	test = ft_strstr(av[1], av[2]);
-	ft_putstr(test);
-	return (0);
 }

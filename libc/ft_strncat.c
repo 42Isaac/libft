@@ -6,40 +6,11 @@
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 03:44:23 by iperez            #+#    #+#             */
-/*   Updated: 2018/12/06 03:57:40 by iperez           ###   ########.fr       */
+/*   Updated: 2019/01/30 14:19:01 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <unistd.h>
-#include <stdlib.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnum(int i)
-{
-	if (i < 0)
-	{
-		ft_putchar('-');
-		i *= -1;
-	}
-	if (i > 9)
-		ft_putnum(i / 10);
-	ft_putchar(i % 10 + '0');
-}
-
-void	ft_putstr(char *c)
-{
-	int i;
-
-	i = 0;
-	while (c[i])
-		ft_putchar(c[i++]);
-	ft_putchar('\n');
-}
+#include "libft.h"
 
 char	*ft_strncat(char *s1, const char *s2, size_t l)
 {
@@ -61,17 +32,4 @@ char	*ft_strncat(char *s1, const char *s2, size_t l)
 		s1[s1l++] = s2[s2l++];
 	s1[s1l] = '\0';
 	return (s1);
-}
-
-int		main(int ac, char **av)
-{
-	char	c[10];
-
-	c[0] = '1';
-	c[1] = '\0';
-	if (ac != 4)
-		return (0);
-	ft_strncat(c, av[2], atoi(av[3]));
-	ft_putstr(c);
-	return (0);
 }
