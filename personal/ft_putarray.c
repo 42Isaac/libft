@@ -6,17 +6,21 @@
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 18:01:54 by iperez            #+#    #+#             */
-/*   Updated: 2019/02/13 18:02:05 by iperez           ###   ########.fr       */
+/*   Updated: 2019/02/21 08:32:47 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putarray(char **a)
-{
-    int i;
+/*
+**  Like putchar or putstr but like it's for arrays instead.
+*/
 
-    i = 0;
-    while (a[i])
-        ft_putendl(a[i++]);
+void	ft_putarray(char **a)
+{
+	int i;
+
+	i = 0;
+	while (a[i])
+		ft_putendl(a[i++]);
 }

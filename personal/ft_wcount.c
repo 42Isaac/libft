@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_wcount.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:31:09 by iperez            #+#    #+#             */
-/*   Updated: 2019/01/30 14:05:50 by iperez           ###   ########.fr       */
+/*   Created: 2019/02/21 07:10:27 by iperez            #+#    #+#             */
+/*   Updated: 2019/02/21 08:25:23 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
-{
-	char	*ptr;
-	size_t	i;
+/*
+**  Returns the amount of words in str s, deliminated by char d.
+*/
 
-	i = -1;
-	ptr = dst;
-	while (++i < n)
+size_t	ft_wcount(char const *s, char d)
+{
+	int		i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
 	{
-		ptr[i] = ((unsigned char *)src)[i];
-		if (((unsigned char *)src)[i] == (unsigned char)c)
-			return (dst + i + 1);
+		while (s[i] == d)
+			i++;
+		if (s[i] && s[i] != d)
+		{
+			count++;
+			while (s[i] && s[i] != d)
+				i++;
+		}
 	}
-	return (NULL);
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 07:03:15 by iperez            #+#    #+#             */
-/*   Updated: 2018/12/10 14:02:18 by iperez           ###   ########.fr       */
+/*   Updated: 2019/02/21 08:16:52 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,27 @@
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t		i;
-	size_t		search;
-	const char	*push;
+	size_t		j;
+	size_t		k;
+	int			found;
 
-	i = 0;
-	if (!*haystack && !*needle)
-		return((char *)haystack);
-	while (haystack[i] && i < len)
+	i = -1;
+	found = 1;
+	if (!ft_strlen(needle))
+		return ((char *)haystack);
+	while (*(haystack + ++i) && i < len)
 	{
-		search = 0;
-		while (haystack[i] == needle[search] && haystack[i] && i < len)
+		j = 0;
+		if (*(haystack + i) == *(needle + 0))
 		{
-			i++;
-			search++;
+			k = i;
+			found = 1;
+			while (*(haystack + k) && *(needle + j) && j < len && k < len)
+				if (*(haystack + k++) != *(needle + j++))
+					found = 0;
+			if (found && !*(needle + j))
+				return ((char *)haystack + i);
 		}
-		if (!needle[search])
-		{
-			push = &haystack[i - search];
-			return ((char *)push);
-		}
-		i++;
 	}
 	return (NULL);
 }

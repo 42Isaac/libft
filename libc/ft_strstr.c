@@ -14,25 +14,28 @@
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int			i;
-	int 		search;
-	const char	*push;
+	int		i;
+	int		j;
+	int		k;
+	int		good;
 
-	i = 0;
-	while (haystack[i])
+	if (!ft_strlen(needle))
+		return ((char *)haystack);
+	i = -1;
+	good = 0;
+	while (*(haystack + ++i) && !good)
 	{
-		search = 0;
-		while (haystack[i] == needle[search] && haystack[i])
+		if (*(haystack + i) == *(needle + 0))
 		{
-			i++;
-			search++;
+			j = 0;
+			k = i;
+			good = 1;
+			while (*(needle + j))
+				if (*(needle + j++) != *(haystack + k++))
+					good = 0;
+			if (good)
+				return ((char *)haystack + i);
 		}
-		if (!needle[search])
-		{
-			push = &haystack[i - search];
-			return ((char *)push);
-		}
-		i++;
 	}
 	return (NULL);
 }

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:31:09 by iperez            #+#    #+#             */
-/*   Updated: 2019/01/30 14:05:50 by iperez           ###   ########.fr       */
+/*   Created: 2019/02/28 11:29:41 by iperez            #+#    #+#             */
+/*   Updated: 2019/02/28 11:29:44 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*ptr;
-	size_t	i;
+	char c;
 
-	i = -1;
-	ptr = dst;
-	while (++i < n)
+	if (n < 0)
 	{
-		ptr[i] = ((unsigned char *)src)[i];
-		if (((unsigned char *)src)[i] == (unsigned char)c)
-			return (dst + i + 1);
+		write(fd, "-", 1);
+		n *= -1;
 	}
-	return (NULL);
+	if (n > 9)
+		ft_putnbr(n / 10);
+	c = n % 10 + '0';
+	write(fd, &c, 1);
 }

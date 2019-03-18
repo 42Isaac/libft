@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:31:09 by iperez            #+#    #+#             */
-/*   Updated: 2019/01/30 14:05:50 by iperez           ###   ########.fr       */
+/*   Created: 2019/02/27 12:14:38 by iperez            #+#    #+#             */
+/*   Updated: 2019/02/27 12:14:43 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+static size_t	ft_nbrstrlen(int n)
 {
-	char	*ptr;
 	size_t	i;
 
-	i = -1;
-	ptr = dst;
-	while (++i < n)
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+char			*ft_itoa(int n)
+{
+	unsigned int	n_cpy;
+	size_t			n_len;
+	char			*nbr;
+
+	n_len = ft_nbrstrlen(n);
+	n_cpy = n;
+	if (n < 0)
 	{
-		ptr[i] = ((unsigned char *)src)[i];
-		if (((unsigned char *)src)[i] == (unsigned char)c)
-			return (dst + i + 1);
+		n_cpy = -n;
+		n_len++;
 	}
-	return (NULL);
+	if (!(nbr = ft_strnew(n_len)))
+		return (NULL);
+	nbr[--n_len] = n_cpy % 10 + '0';
+	while (n_cpy /= 10)
+		nbr[--n_len] = n_cpy % 10 + '0';
+	if (n < 0)
+		nbr[0] = '-';
+	return (nbr);
 }

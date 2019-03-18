@@ -6,22 +6,22 @@
 /*   By: iperez <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 13:16:13 by iperez            #+#    #+#             */
-/*   Updated: 2019/02/11 13:16:15 by iperez           ###   ########.fr       */
+/*   Updated: 2019/02/21 08:23:48 by iperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strequ(char const *s1, char const *s2)
+int	ft_strequ(char const *s1, char const *s2)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (s1[i] == s2[i])
-    {
-        if(!s1[i])
-            return (1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (s1[i] == s2[i])
+	{
+		if (!s1[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }
