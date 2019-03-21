@@ -21,6 +21,12 @@ void	ft_putnbr(int n)
 		write(1, "-", 1);
 		n *= -1;
 	}
+	if (n == -2147483648)
+	{
+		write(1, "2", 1);
+		n %= 1000000000;
+		n = -n;
+	}
 	if (n > 9)
 		ft_putnbr(n / 10);
 	c = n % 10 + '0';

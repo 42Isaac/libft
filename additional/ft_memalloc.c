@@ -19,5 +19,6 @@ void	*ft_memalloc(size_t size)
 	push = (void *)malloc(sizeof(void) * size);
 	if (!push)
 		return (NULL);
+	ft_bzero(push, size);
 	return (push);
 }

@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-static void	ft_arrayclear(char **array, int arraylen)
+static void	ft_arrayclear(char ***array, int arraylen)
 {
 	while (arraylen >= 0)
-		free(array[arraylen--]);
-	free(array);
+		free(*(array[arraylen--]));
+	free(*array);
 }
 
 char		**ft_strsplit(char const *s, char c)
@@ -26,7 +26,7 @@ char		**ft_strsplit(char const *s, char c)
 	int		arrstr;
 	char	**push;
 
-	if (ft_wcount(s, c) == 0 || !(push = ft_arraynew(ft_wcount(s, c))))
+	if (!s || !(push = ft_arraynew(ft_wcount(s, c))))
 		return (NULL);
 	str = 0;
 	arr = 0;
@@ -36,7 +36,7 @@ char		**ft_strsplit(char const *s, char c)
 			str++;
 		if (!(push[arr] = ft_strnew(ft_wordlen((char *)s, str, c))))
 		{
-			ft_arrayclear(push, arr);
+			ft_arrayclear(&push, arr);
 			return (NULL);
 		}
 		arrstr = 0;

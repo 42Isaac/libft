@@ -19,12 +19,14 @@ char	*ft_strtrim(char const *s)
 	int		i;
 	char	*push;
 
+	if (!s)
+		return (NULL);
 	start = 0;
 	end = ft_strlen(s) - 1;
 	while (end > 0 && (s[end] == ' ' || s[end] == '\n' || s[end] == '\t'))
 		end--;
 	if (end == 0)
-		return (NULL);
+		return ("");
 	while (s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
 		start++;
 	if (!(push = ft_strnew(end - start)))

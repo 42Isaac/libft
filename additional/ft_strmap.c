@@ -23,7 +23,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	if (!push)
 		return (NULL);
 	i = -1;
-	while (*(s + ++i))
-		*(push + i) = f(*(s + i));
+	while (s[++i])
+		push[i] = f(s[i]);
 	return (push);
 }

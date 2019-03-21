@@ -17,23 +17,23 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	int		i;
 	int		j;
 	int		k;
-	int		good;
+	int		found;
 
 	if (!ft_strlen(needle))
 		return ((char *)haystack);
 	i = -1;
-	good = 0;
-	while (*(haystack + ++i) && !good)
+	found = 0;
+	while (haystack[++i] && !found)
 	{
-		if (*(haystack + i) == *(needle + 0))
+		if (haystack[i] == needle[0])
 		{
 			j = 0;
 			k = i;
-			good = 1;
-			while (*(needle + j))
-				if (*(needle + j++) != *(haystack + k++))
-					good = 0;
-			if (good)
+			found = 1;
+			while (needle[j])
+				if (needle[j++] != haystack[k++])
+					found = 0;
+			if (found)
 				return ((char *)haystack + i);
 		}
 	}
