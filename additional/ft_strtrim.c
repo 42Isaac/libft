@@ -12,27 +12,25 @@
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+int		ft_isstrwhitespace(char c)
 {
-	int		start;
-	int		end;
-	int		i;
-	char	*push;
+	return (c == ' ' || c == '\t' || c == '\n');
+}
+
+char		*ft_strtrim(char const *s)
+{
+	size_t	start;
+	size_t	finish;
 
 	if (!s)
 		return (NULL);
 	start = 0;
-	end = ft_strlen(s) - 1;
-	while (end > 0 && (s[end] == ' ' || s[end] == '\n' || s[end] == '\t'))
-		end--;
-	if (end == 0)
-		return ("");
-	while (s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
+	while (ft_isstrwhitespace(s[start]))
 		start++;
-	if (!(push = ft_strnew(end - start)))
-		return (NULL);
-	i = 0;
-	while (start <= end)
-		push[i++] = s[start++];
-	return (push);
+	finish = ft_strlen(s);
+	while (ft_isstrwhitespace(s[finish - 1]))
+		finish--;
+	if (finish < start)
+		finish = start;
+	return (ft_strsub(s, start, finish - start));
 }
