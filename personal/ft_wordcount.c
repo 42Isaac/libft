@@ -10,7 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
+
+/*
+** Returns the number of words in a string, defining spaces as d.
+*/
 
 size_t  ft_wordcount(char *s, char d)
 {
