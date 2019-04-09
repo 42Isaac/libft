@@ -21,6 +21,8 @@ bonus/*.c \
 \
 personal/*.c \
 
+# find libc -name '*.c'
+
 OBJ			= $(FILES:%.c=%.o)
 
 .PHONY: clean fclean all re
