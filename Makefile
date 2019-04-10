@@ -12,24 +12,14 @@
 
 NAME		= libft.a
 CFLAGS		= -Wall -Werror -Wextra
-FILES		= \
-libc/*.c \
-\
-additional/*.c \
-\
-bonus/*.c \
-\
-personal/*.c \
 
-# find libc -name '*.c'
+FILES		= $(wildcard libc/*.c additional/*.c bonus/*.c personal/*.c)
 
 OBJ			= $(FILES:%.c=%.o)
 
 .PHONY: clean fclean all re
 
 all: $(NAME)
-	@rm -f libft.a
-	@make libft.a
 
 $(NAME): $(OBJ)
 	@ar -rcs $(NAME) $(OBJ)
