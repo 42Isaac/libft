@@ -13,19 +13,18 @@
 NAME		= libft.a
 CFLAGS		= -Wall -Werror -Wextra
 
-FILES		= $(wildcard libc/*.c additional/*.c bonus/*.c personal/*.c)
+OBJ			= $(patsubst %.c,%.o,$(wildcard \
+				libc/*.c additional/*.c bonus/*.c personal/*.c))
 
-OBJ			= $(FILES:%.c=%.o)
+.PHONY: silent show all clean fclean re
 
-.PHONY: clean fclean all re
+silent:
+	@make all -s
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar -rcs $(NAME) $(OBJ)
-
-%(OBJ): $(FILES)
-	@gcc $(CFLAGS) $(FILES)
+	ar -rcs $(NAME) $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
