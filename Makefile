@@ -5,31 +5,39 @@
 #                                                     +:+ +:+         +:+      #
 #    By: iperez <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/29 13:02:20 by iperez            #+#    #+#              #
-#    Updated: 2019/02/04 13:33:59 by iperez           ###   ########.fr        #
+#    Created: 2019/06/17 05:28:22 by iperez            #+#    #+#              #
+#    Updated: 2019/06/17 05:28:25 by iperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME		= fillit
 CFLAGS		= -Wall -Werror -Wextra
 
-OBJ			= $(patsubst %.c,%.o,$(wildcard \
-				libc/*.c additional/*.c bonus/*.c personal/*.c))
+OBJ	= $(patsubst %.c,%.o,$(wildcard *.c))
 
 .PHONY: silent show all clean fclean re
 
 silent:
 	@make all -s
 
+debug:
+	make all CFLAGS='$(CFLAGS) -g'
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar -rcs $(NAME) $(OBJ)
+	$(MAKE) all -C libft_1
+	cp libft_1/libft.a ./$(NAME)
+	ar -rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean:
-	@rm -f $(OBJ)
+	-@rm -f $(OBJ)
+	-@$(MAKE) clean -C libft_1 -s
 
 fclean: clean
-	@rm -f $(NAME)
+	-@rm -f $(NAME)
+	-@rm -f -r $(NAME).dSYM
+	-@$(MAKE) fclean -C libft_1 -s
 
 re: fclean all
